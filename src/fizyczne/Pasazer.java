@@ -56,6 +56,12 @@ public class Pasazer {
     public boolean wejdzDoTramwaju(Tramwaj tramwaj) {
         boolean czyWszedl = tramwaj.dodajPasazera(this);
         if (!czyWszedl) return false;
+        wybierzPrzystanek(tramwaj);
+        return true;
+    }
+
+    // wybiera przystanek pasazerowi z pozostalych na trasie
+    private void wybierzPrzystanek(Tramwaj tramwaj) {
         if (tramwaj.getPoprzedniPrzystanek() <= tramwaj.getNastepnyPrzystanek()) {
             wybranyPrzystanek = Losowanie.losuj(tramwaj.getNastepnyPrzystanek() + 1,
                     tramwaj.getLinia().liczbaPrzystankow() - 1);
@@ -63,9 +69,7 @@ public class Pasazer {
         else {
             wybranyPrzystanek = Losowanie.losuj(0, tramwaj.getNastepnyPrzystanek() + 1);
         }
-        return true;
     }
-    private void wybierzPrzystanek(Tramwaj tramwaj) {}
     public boolean wyjdzZTramwaju() {return false;}
 
 }
