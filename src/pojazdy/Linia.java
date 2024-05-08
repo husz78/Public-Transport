@@ -42,4 +42,7 @@ public class Linia {
     public Przystanek getItyPrzystanek(int i) {
         return przystanki[i];
     }
+    public int getNr(){
+        return nr;
+    }
 }

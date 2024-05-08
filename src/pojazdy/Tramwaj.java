@@ -45,6 +45,30 @@ public class Tramwaj extends Pojazd{
     public int getNastepnyPrzystanek() {
         return nastepnyPrzystanek;
     }
+    public int getLiczbaPasazerow() {
+        return liczbaPasazerow;
+    }
+    public void incLiczbaPasazerow() {
+        liczbaPasazerow++;
+    }
+    public void decLiczbaPasazerow() {
+        liczbaPasazerow--;
+    }
+
+    // zamienia miejscami pasazera i oraz pasazera j w tablicy pasazerow tramwaju
+    public void zamien(int i, int j) {
+        Pasazer tmp = pasazerowie[i];
+        pasazerowie[i] = pasazerowie[j];
+        pasazerowie[j] = tmp;
+    }
+
+    // zwraca indeks pasazera w danym tramwaju
+    public int indeksPasazera(Pasazer pasazer) {
+        for (int i = 0; i < liczbaPasazerow; i++){
+            if (pasazer == pasazerowie[i])return i;
+        }
+        return -1;
+    }
 
     // dodaje pasazera do ludzi w tramwaju i zwraca true jesli sie udalo i false jak nie ma juz miejsca
     public boolean dodajPasazera(Pasazer pasazer) {

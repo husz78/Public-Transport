@@ -27,6 +27,10 @@ public class Pasazer {
     public Godzina getGodzinaWyjscia() {
         return godzinaWyjscia;
     }
+    public Przystanek getWybranyPrzystanek(Tramwaj tramwaj) {
+        Przystanek przystanek = tramwaj.getLinia().getItyPrzystanek(wybranyPrzystanek);
+        return przystanek;
+    }
     @Override
     public String toString() {
         return "Pasazer o numerze: " + nr +
@@ -60,7 +64,7 @@ public class Pasazer {
         return true;
     }
 
-    // wybiera przystanek pasazerowi z pozostalych na trasie
+    // wybiera przystanek, na ktorym wysiadzie, pasazerowi z pozostalych na trasie
     private void wybierzPrzystanek(Tramwaj tramwaj) {
         if (tramwaj.getPoprzedniPrzystanek() <= tramwaj.getNastepnyPrzystanek()) {
             wybranyPrzystanek = Losowanie.losuj(tramwaj.getNastepnyPrzystanek() + 1,
@@ -70,6 +74,19 @@ public class Pasazer {
             wybranyPrzystanek = Losowanie.losuj(0, tramwaj.getNastepnyPrzystanek() + 1);
         }
     }
-    public boolean wyjdzZTramwaju() {return false;}
+
+    // pasazer wysiada na przystanku wybranym uprzednio
+    // metoda zwraca true jesli to sie udalo i false w przeciwnym przypadku
+    public boolean wyjdzZTramwaju(Tramwaj tramwaj) {
+        Przystanek przystanek = tramwaj.getLinia().getItyPrzystanek(wybranyPrzystanek);
+        if (przystanek.getLiczbaOsob() < Przystanek.getPojemnosc()) {
+            tramwaj.zamien(tramwaj.indeksPasazera(this), tramwaj.getLiczbaPasazerow() - 1);
+            tramwaj.decLiczbaPasazerow();
+            przystanek.addOczekujacy(this);
+            przystanek.incLiczbaOsob();
+            return true;
+        }
+        else return false;
+    }
 
 }

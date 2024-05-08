@@ -14,5 +14,6 @@ public abstract class Pojazd {
     public Linia getLinia() {
         return linia;
     }
+    public int getNrBoczny() { return nrBoczny; }
 
 }

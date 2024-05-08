@@ -11,7 +11,7 @@ public class Przystanek {
         this.nazwa = nazwa;
         this.nr = nr;
         this.liczbaOsob = 0;
-        this.oczekujacy = null;
+        this.oczekujacy = new Pasazer[pojemnosc];
     }
 
     @Override
@@ -28,6 +28,7 @@ public class Przystanek {
     public void incLiczbaOsob() {
         liczbaOsob++;
     }
+    public void decLiczbaOsob() { liczbaOsob--; }
     public void resetLiczaOsob() {
         liczbaOsob = 0;
     }
