@@ -36,4 +36,10 @@ public class Linia {
     public Przystanek[] getPrzystanki() {
         return przystanki;
     }
+    public int liczbaPrzystankow() {
+        return przystanki.length;
+    }
+    public Przystanek getItyPrzystanek(int i) {
+        return przystanki[i];
+    }
 }

@@ -10,15 +10,16 @@ public class Tramwaj extends Pojazd{
     private static int pojemnosc; // pojemnosc tramwaju (dla kazdego taka sama)
     private Pasazer[] pasazerowie; // tablica aktualnych pasazerow tramwaju
     private int liczbaPasazerow; // aktualna liczba pasazerow w tramwaju
-    private Przystanek poprzedniPrzystanek; // poprzedni przystanek,
-    // na ktorym byl tramwaj
-    private Przystanek nastepnyPrzystanek; // Przystanek nastepny w kolejnosci,
-    // na ktory przyjedzie tramwaj
+    private int poprzedniPrzystanek; // indeks poprzedniego przystanku,
+    // na ktorym byl tramwaj w tablicy przystankow danej linii. -1 lub liczba przystankow na linii,
+    // jesli tramwaj ma jako nastepny przystanek jedna z petlii
+    private int nastepnyPrzystanek; // indeks nastepnego przystanku,
+    // na ktory przyjedzie tramwaj w tablicy przystankow danej linii lub aktualny przystanek
+    // na ktorym tramwaj sie teraz znajduje
 
     public Tramwaj(int nrBoczny, Linia linia) {
         super(nrBoczny, linia);
         pasazerowie = new Pasazer[pojemnosc];
-        poprzedniPrzystanek = null;
         liczbaPasazerow = 0;
     }
     @Override
@@ -32,11 +33,17 @@ public class Tramwaj extends Pojazd{
     public static int getPojemnosc() {
         return Tramwaj.pojemnosc;
     }
-    public void setPoprzedniPrzystanek(Przystanek p) {
-        poprzedniPrzystanek = p;
+    public void setPoprzedniPrzystanek(int i) {
+        poprzedniPrzystanek = i;
     }
-    public void setNastepnyPrzystanek(Przystanek p) {
-        nastepnyPrzystanek = p;
+    public void setNastepnyPrzystanek(int i) {
+        nastepnyPrzystanek = i;
+    }
+    public int getPoprzedniPrzystanek() {
+        return poprzedniPrzystanek;
+    }
+    public int getNastepnyPrzystanek() {
+        return nastepnyPrzystanek;
     }
 
     // dodaje pasazera do ludzi w tramwaju i zwraca true jesli sie udalo i false jak nie ma juz miejsca

@@ -4,7 +4,6 @@ import pojazdy.*;
 import zdarzenia.Zdarzenie;
 import zdarzenia.ZdarzeniePasazer;
 import zdarzenia.ZdarzenieTramwaj;
-import zdarzenia.opcjaPasazer;
 
 import java.util.Scanner;
 
@@ -26,7 +25,7 @@ public class Main {
         }
 
 //        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
-//        opcjaPasazer opcja = opcjaPasazer.zaplanuj;
+//        opcjaPasazer opcja = opcjaPasazer.idz;
 //        ZdarzeniePasazer z1 = new ZdarzeniePasazer(pasazerowie[0].getGodzinaWyjscia(),
 //                pasazerowie[0], opcja);
 //        Zdarzenie[] zdarzenia = new Zdarzenie[symulacja.liczbaPasazerow()];
