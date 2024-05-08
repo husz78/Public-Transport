@@ -79,6 +79,7 @@ public class Pasazer {
     // metoda zwraca true jesli to sie udalo i false w przeciwnym przypadku
     public boolean wyjdzZTramwaju(Tramwaj tramwaj) {
         Przystanek przystanek = tramwaj.getLinia().getItyPrzystanek(wybranyPrzystanek);
+        if (tramwaj.indeksPasazera(this) == -1) return false;
         if (przystanek.getLiczbaOsob() < Przystanek.getPojemnosc()) {
             tramwaj.zamien(tramwaj.indeksPasazera(this), tramwaj.getLiczbaPasazerow() - 1);
             tramwaj.decLiczbaPasazerow();

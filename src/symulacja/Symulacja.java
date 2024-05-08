@@ -81,9 +81,19 @@ public class Symulacja {
                 int dlugoscTrasy = skaner.nextInt();
                 // tworzenie nowych linii
                 Linia l = new Linia(i, liczbaTramwajowLinii, dlugoscTrasy);
+                int counter = 0;
                 for (int j = 0; j < liczbaTramwajowLinii; j++) {
                     // tworzenie nowych tramwajow
                     tramwaje[i][j] = new Tramwaj(liczbaTramwajow, l);
+                    if (counter < liczbaTramwajowLinii / 2) {
+                        tramwaje[i][j].setPoprzedniPrzystanek(l.liczbaPrzystankow());
+                        tramwaje[i][j].setNastepnyPrzystanek(l.liczbaPrzystankow() - 1);
+                    }
+                    else {
+                        tramwaje[i][j].setPoprzedniPrzystanek(-1);
+                        tramwaje[i][j].setNastepnyPrzystanek(0);
+                    }
+                    counter++;
                     liczbaTramwajow++;
                 }
                 for (int j = 0; j < dlugoscTrasy; j++) {
@@ -162,6 +172,4 @@ public class Symulacja {
                 "Niepoprawny indeks przystanku";
         return przystanki[i];
     }
-
-
 }

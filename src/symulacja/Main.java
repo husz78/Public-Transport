@@ -53,6 +53,9 @@ public class Main {
         for (Przystanek p : przystanki) {
             System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
         }
+        for (Tramwaj t : tramwaje) {
+            System.out.println(t.getPoprzedniPrzystanek());
+        }
 
 //        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
 //        opcjaPasazer opcja = opcjaPasazer.idz;

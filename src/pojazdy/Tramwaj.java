@@ -2,11 +2,12 @@ package pojazdy;
 
 import fizyczne.Pasazer;
 import fizyczne.Przystanek;
+import symulacja.Godzina;
 import zdarzenia.ZdarzenieTramwaj;
 
 public class Tramwaj extends Pojazd{
     // TODO: odkomentowac
-    //private Godzina godzinaStartu; // czas, kiedy tramwaj rozpoczyna swoj bieg
+    private Godzina godzinaStartu; // czas, kiedy tramwaj rozpoczyna swoj bieg
     private static int pojemnosc; // pojemnosc tramwaju (dla kazdego taka sama)
     private Pasazer[] pasazerowie; // tablica aktualnych pasazerow tramwaju
     private int liczbaPasazerow; // aktualna liczba pasazerow w tramwaju
