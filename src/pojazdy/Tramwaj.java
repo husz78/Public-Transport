@@ -1,13 +1,15 @@
 package pojazdy;
 
 import fizyczne.Pasazer;
+import fizyczne.Przystanek;
+import zdarzenia.ZdarzenieTramwaj;
 
 public class Tramwaj extends Pojazd{
     // TODO: odkomentowac
     //private Godzina godzinaStartu; // czas, kiedy tramwaj rozpoczyna swoj bieg
     private static int pojemnosc; // pojemnosc tramwaju (dla kazdego taka sama)
     private Pasazer[] pasazerowie; // tablica aktualnych pasazerow tramwaju
-    private String poprzedniPrzystanek; // nazwa poprzedniego przystanku,
+    private Przystanek poprzedniPrzystanek; // nazwa poprzedniego przystanku,
     // na ktorym byl tramwaj
 
     public Tramwaj(int nrBoczny, Linia linia) {
@@ -28,6 +30,7 @@ public class Tramwaj extends Pojazd{
     }
 
     //TODO implementacja
-    private void zatrzymajSie() {}
+    public void zatrzymajSie() {}
+    public ZdarzenieTramwaj odjedzZPrzystanku() {return null;}
 
 }

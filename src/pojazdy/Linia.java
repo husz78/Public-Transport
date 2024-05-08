@@ -32,4 +32,8 @@ public class Linia {
         przystanki[i] = p;
         czasMiedzyPrzystankami[i] = czasMiedzyPrzystankiem;
     }
+
+    public Przystanek[] getPrzystanki() {
+        return przystanki;
+    }
 }
