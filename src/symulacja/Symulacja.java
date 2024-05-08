@@ -31,6 +31,7 @@ public class Symulacja {
         this.czasCzekaniaRazem = 0;
         this.liczbaPrzejazdowRazem = 0;
         this.nrDnia = 0;
+        this.kolejka = new KolejkaZdarzen();
     }
     @Override
     public String toString() {

@@ -13,6 +13,7 @@ public class Przystanek {
         this.liczbaOsob = 0;
         this.oczekujacy = null;
     }
+
     @Override
     public String toString() {
         return "Przystanek " + nazwa + " o numerze: " + nr + " Liczba osob oczekujacych: " +
