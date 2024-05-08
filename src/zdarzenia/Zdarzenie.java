@@ -4,6 +4,10 @@ public abstract class Zdarzenie {
     protected Godzina czas;
     protected Object obiekt;
 
+    public Zdarzenie(Godzina godzina) {
+        this.czas = godzina;
+    }
+
     public Godzina getCzas() {
         return czas;
     }

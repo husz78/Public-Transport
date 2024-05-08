@@ -5,7 +5,7 @@ import symulacja.Godzina;
 
 public class ZdarzenieTramwaj extends Zdarzenie{
     public ZdarzenieTramwaj(Godzina godzina, Tramwaj tramwaj) {
-        this.czas = godzina;
+        super(godzina);
         this.obiekt = tramwaj;
     }
 }
