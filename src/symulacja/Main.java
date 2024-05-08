@@ -19,26 +19,31 @@ public class Main {
         Pasazer[] pasazerowie = symulacja.getPasazerowie();
         Tramwaj[] tramwaje = symulacja.getTramwaje();
         symulacja.pierwszyDzien();
-
-//        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
-        opcjaPasazer opcja = opcjaPasazer.zaplanuj;
-        ZdarzeniePasazer z1 = new ZdarzeniePasazer(pasazerowie[0].getGodzinaWyjscia(),
-                pasazerowie[0], opcja);
-        Zdarzenie[] zdarzenia = new Zdarzenie[symulacja.liczbaPasazerow()];
-        zdarzenia[0] = z1;
-
-        for (int i = 1; i < symulacja.liczbaPasazerow(); i++) {
-            zdarzenia[i] = new ZdarzenieTramwaj(pasazerowie[i].getGodzinaWyjscia(), tramwaje[0]);
-        }
-        KolejkaZdarzen kolejka = new KolejkaZdarzen();
-        for (int i = 0; i < zdarzenia.length; i++) {
-            kolejka.wstaw(zdarzenia[i]);
-        }
-        System.out.println("---------------------------");
+        KolejkaZdarzen kolejka = symulacja.getKolejka();
         while (!kolejka.czyPusta()) {
             Zdarzenie z = kolejka.pobierz();
             System.out.println(z.getCzas());
         }
+
+//        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
+//        opcjaPasazer opcja = opcjaPasazer.zaplanuj;
+//        ZdarzeniePasazer z1 = new ZdarzeniePasazer(pasazerowie[0].getGodzinaWyjscia(),
+//                pasazerowie[0], opcja);
+//        Zdarzenie[] zdarzenia = new Zdarzenie[symulacja.liczbaPasazerow()];
+//        zdarzenia[0] = z1;
+//
+//        for (int i = 1; i < symulacja.liczbaPasazerow(); i++) {
+//            zdarzenia[i] = new ZdarzenieTramwaj(pasazerowie[i].getGodzinaWyjscia(), tramwaje[0]);
+//        }
+//        KolejkaZdarzen kolejka = new KolejkaZdarzen();
+//        for (int i = 0; i < zdarzenia.length; i++) {
+//            kolejka.wstaw(zdarzenia[i]);
+//        }
+//        System.out.println("---------------------------");
+//        while (!kolejka.czyPusta()) {
+//            Zdarzenie z = kolejka.pobierz();
+//            System.out.println(z.getCzas());
+//        }
 
     }
 }

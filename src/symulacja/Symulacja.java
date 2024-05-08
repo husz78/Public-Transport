@@ -113,6 +113,7 @@ public class Symulacja {
     }
 
     // losuje godziny wyjscia dla pasazerow
+    // i wstawia zdarzenia reprezentujace wyjscie na przystanek do kolejki
     private void wylosujGodzinyWyjscia() {
         for (Pasazer p : pasazerowie) {
             kolejka.wstaw(p.zaplanujWyjscie());
@@ -149,6 +150,10 @@ public class Symulacja {
     }
     public int liczbaPasazerow() {
         return pasazerowie.length;
+    }
+    // TODO Moze do usuniecia ten getter
+    public KolejkaZdarzen getKolejka() {
+        return kolejka;
     }
 
     // zwraca przystanek o indeksie i w symulacji
