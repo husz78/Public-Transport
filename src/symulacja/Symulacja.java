@@ -191,6 +191,8 @@ public class Symulacja {
         wylosujGodzinyWyjscia();
         ustawTramwaje();
         ustalGodzinyWyjazdu();
+        liczbaPrzejazdow = 0;
+        czasCzekania = 0;
     }
 
 
@@ -212,6 +214,10 @@ public class Symulacja {
     }
     public int liczbaPrzystankow() {
         return przystanki.length;
+    }
+    public void incLiczbaPrzejazdow() {
+        liczbaPrzejazdow++;
+        liczbaPrzejazdowRazem++;
     }
     public int liczbaPasazerow() {
         return pasazerowie.length;

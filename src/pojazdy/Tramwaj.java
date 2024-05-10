@@ -105,6 +105,7 @@ public class Tramwaj extends Pojazd {
             Pasazer p = przystanek.getItyOczekujacy(i);
             boolean czyWszedl = przystanek.getItyOczekujacy(i).wejdzDoTramwaju(this);
             if (czyWszedl) {
+                symulacja.incLiczbaPrzejazdow();
                 przystanek.usunItyOczekujacy(i);
                 System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Pasażer " +
                         p.getNr() + " wsiadł do tramwaju linii " + getLinia().getNr() +
