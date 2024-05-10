@@ -45,4 +45,8 @@ public class Linia {
     public int getNr(){
         return nr;
     }
+
+    public int getLiczbaPojazdow() {
+        return liczbaPojazdow;
+    }
 }

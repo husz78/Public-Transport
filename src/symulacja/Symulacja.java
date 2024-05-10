@@ -81,19 +81,19 @@ public class Symulacja {
                 int dlugoscTrasy = skaner.nextInt();
                 // tworzenie nowych linii
                 Linia l = new Linia(i, liczbaTramwajowLinii, dlugoscTrasy);
-                int counter = 0;
+//                int counter = 0;
                 for (int j = 0; j < liczbaTramwajowLinii; j++) {
                     // tworzenie nowych tramwajow
                     tramwaje[i][j] = new Tramwaj(liczbaTramwajow, l);
-                    if (counter < liczbaTramwajowLinii / 2) {
-                        tramwaje[i][j].setPoprzedniPrzystanek(l.liczbaPrzystankow());
-                        tramwaje[i][j].setNastepnyPrzystanek(l.liczbaPrzystankow() - 1);
-                    }
-                    else {
-                        tramwaje[i][j].setPoprzedniPrzystanek(-1);
-                        tramwaje[i][j].setNastepnyPrzystanek(0);
-                    }
-                    counter++;
+//                    if (counter < liczbaTramwajowLinii / 2) {
+//                        tramwaje[i][j].setPoprzedniPrzystanek(l.liczbaPrzystankow());
+//                        tramwaje[i][j].setNastepnyPrzystanek(l.liczbaPrzystankow() - 1);
+//                    }
+//                    else {
+//                        tramwaje[i][j].setPoprzedniPrzystanek(-1);
+//                        tramwaje[i][j].setNastepnyPrzystanek(0);
+//                    }
+//                    counter++;
                     liczbaTramwajow++;
                 }
                 for (int j = 0; j < dlugoscTrasy; j++) {
@@ -129,11 +129,46 @@ public class Symulacja {
             kolejka.wstaw(p.zaplanujWyjscie());
         }
     }
+    private void ustawTramwaje() {// TODO
+        int counter = 0;
+        if (tramwaje.length == 0)return;
+        if (tramwaje.length == 1) {
+            tramwaje[0].setPoprzedniPrzystanek(-1);
+            tramwaje[0].setNastepnyPrzystanek(0);
+        }
+        else { // ustawiamy tramwaje zgodnie ze specyfikacją zadania
+            tramwaje[0].setPoprzedniPrzystanek(-1);
+            tramwaje[0].setNastepnyPrzystanek(0);
+            counter++;
+            for (int i = 1; i < tramwaje.length; i++) {
+                if (tramwaje[i].getLinia().getNr() != tramwaje[i-1].getLinia().getNr()) {
+                    counter = 1;
+                    tramwaje[i].setNastepnyPrzystanek(0);
+                    tramwaje[i].setPoprzedniPrzystanek(-1);
+                }
+                if (tramwaje[i].getLinia().getNr() == tramwaje[i-1].getLinia().getNr()) {
+                    if (counter <= tramwaje[i].getLinia().getLiczbaPojazdow() / 2) {
+                        counter++;
+                        tramwaje[i].setNastepnyPrzystanek(tramwaje[i].getLinia().liczbaPrzystankow() - 1);
+                        tramwaje[i].setPoprzedniPrzystanek(tramwaje[i].getLinia().liczbaPrzystankow());
+
+                    }
+                    else {
+                        counter++;
+                        tramwaje[i].setPoprzedniPrzystanek(-1);
+                        tramwaje[i].setNastepnyPrzystanek(0);
+                    }
+                }
+            }
+        }
+
+    }
 
     // TODO nie skończony pierwszy dzien
     public void pierwszyDzien() {
         wylosujPrzystanki();
         wylosujGodzinyWyjscia();
+        ustawTramwaje();
     }
     public void nastepneZdarzenie() {}
     public void nastepnyDzien() {}

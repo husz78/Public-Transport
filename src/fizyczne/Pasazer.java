@@ -71,7 +71,7 @@ public class Pasazer {
                     tramwaj.getLinia().liczbaPrzystankow() - 1);
         }
         else {
-            wybranyPrzystanek = Losowanie.losuj(0, tramwaj.getNastepnyPrzystanek() + 1);
+            wybranyPrzystanek = Losowanie.losuj(0, tramwaj.getNastepnyPrzystanek() - 1);
         }
     }
 
