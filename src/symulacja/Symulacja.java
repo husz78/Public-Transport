@@ -3,6 +3,8 @@ import fizyczne.Pasazer;
 import fizyczne.Przystanek;
 import pojazdy.Linia;
 import pojazdy.Tramwaj;
+import zdarzenia.ZdarzenieTramwaj;
+
 import java.util.Scanner;
 
 public class Symulacja {
@@ -157,6 +159,7 @@ public class Symulacja {
     }
 
     // ustala godziny wyjazdu wszystkich tramwajow symulacji
+    // i wrzuca nowe zdarzenia dla tramwajow odpowiadajace ich przyjazdom na pierwszy przystanek
     private void ustalGodzinyWyjazdu() {
         if (tramwaje.length == 0)return;
         tramwaje[0].setGodzinaStartu(new Godzina(6, 0));
@@ -174,17 +177,21 @@ public class Symulacja {
                 }
             }
         }
+        for (Tramwaj t : tramwaje)
+            kolejka.wstaw(new ZdarzenieTramwaj(t.getGodzinaStartu(), t));
     }
 
     // TODO nie skończony pierwszy dzien
     public void pierwszyDzien() {
         wylosujPrzystanki();
+        nastepnyDzien();
+    }
+    public void nastepneZdarzenie() {}
+    public void nastepnyDzien() {
         wylosujGodzinyWyjscia();
         ustawTramwaje();
         ustalGodzinyWyjazdu();
     }
-    public void nastepneZdarzenie() {}
-    public void nastepnyDzien() {}
 
 
     // zwraca przystanek o danej nazwie
@@ -212,6 +219,9 @@ public class Symulacja {
     // TODO Moze do usuniecia ten getter
     public KolejkaZdarzen getKolejka() {
         return kolejka;
+    }
+    public int getNrDnia() {
+        return nrDnia;
     }
 
     // zwraca przystanek o indeksie i w symulacji

@@ -36,6 +36,13 @@ public class Przystanek {
         return liczbaOsob;
     }
 
+    // zamienia i-tego oczekujacego i j-tego oczekujacego miejscami na przystanku
+    private void zamien(int i, int j) {
+        Pasazer tmp = oczekujacy[i];
+        oczekujacy[i] = oczekujacy[j];
+        oczekujacy[j] = tmp;
+    }
+
     // Zwraca nam i-tego oczekujacego
     public Pasazer getItyOczekujacy(int i) {
         assert i >= 0 && i < Przystanek.getPojemnosc():
@@ -48,6 +55,12 @@ public class Przystanek {
         assert Przystanek.getPojemnosc() > getLiczbaOsob(): "Nie mozna dodac juz oczekujacego" +
                 "na przystanku o numerze: " + this.nr;
         oczekujacy[liczbaOsob] = a;
+    }
+
+    // usuwa i-tego pasazera z oczekujacych na przystanku
+    public void usunItyOczekujacy(int i) {
+        zamien(i, liczbaOsob - 1);
+        liczbaOsob--;
     }
     public String getNazwa() {
         return nazwa;

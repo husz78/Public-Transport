@@ -31,6 +31,9 @@ public class Pasazer {
         Przystanek przystanek = tramwaj.getLinia().getItyPrzystanek(wybranyPrzystanek);
         return przystanek;
     }
+    public int getWybranyPrzystanek() {
+        return wybranyPrzystanek;
+    }
     @Override
     public String toString() {
         return "Pasazer o numerze: " + nr +

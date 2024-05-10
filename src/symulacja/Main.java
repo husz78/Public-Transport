@@ -30,34 +30,11 @@ public class Main {
         for (Przystanek p : przystanki) {
             System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
         }
-        for (Pasazer p : pasazerowie) {
-            boolean czyWszedl = p.wejdzDoTramwaju(tramwaje[0]);
-            if (czyWszedl) {
-                System.out.println("Pasazer " + p.getNr() + " wsiadl do tramwaju o numerze " +
-                        tramwaje[0].getNrBoczny() + " na przystanku " + tramwaje[0].getNastepnyPrzystanek() +
-                        " i wybral przystanek " + p.getWybranyPrzystanek(tramwaje[0]).getNazwa());
-            }
-            else System.out.println("Pasazer " + p.getNr() + " nie wsiadl do tramwaju.");
-        }
-        for (Pasazer p : pasazerowie) {
-            boolean czyWyszedl = p.wyjdzZTramwaju(tramwaje[0]);
-            if (czyWyszedl) {
-                System.out.println("Pasazer " + p.getNr() + " wysiadl na przystanek " +
-                        p.getWybranyPrzystanek(tramwaje[0]));
-            }
-            else {
-                System.out.println("Pasazer " + p.getNr() + " nie wysiadl na przystanku " +
-                        p.getWybranyPrzystanek(tramwaje[0]) + " bo nie bylo miejsca na nim");
-            }
+        for (Tramwaj t : tramwaje) {
+            t.zatrzymajSie(symulacja, new Godzina(7, 8));
         }
         for (Przystanek p : przystanki) {
             System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
-        }
-        for (Tramwaj t : tramwaje) {
-            System.out.println(t.getPoprzedniPrzystanek());
-        }
-        for (Tramwaj t : tramwaje) {
-            System.out.println(t.getGodzinaStartu());
         }
 
 //        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());

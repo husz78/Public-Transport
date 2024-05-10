@@ -3,6 +3,7 @@ package pojazdy;
 import fizyczne.Pasazer;
 import fizyczne.Przystanek;
 import symulacja.Godzina;
+import symulacja.Symulacja;
 import zdarzenia.ZdarzenieTramwaj;
 
 public class Tramwaj extends Pojazd{
@@ -83,8 +84,46 @@ public class Tramwaj extends Pojazd{
         else return false;
     }
 
-    //TODO implementacja
-    public void zatrzymajSie() {}
-    public ZdarzenieTramwaj odjedzZPrzystanku() {return null;}
+    // wypuszcza wszystkich pasazerow, ktorzy wybrali dany przystanek jeslii jest na nim miejsce
+    private void wypuscPasazerow(Symulacja symulacja, Godzina godzina) {
+        for (int i = 0; i < liczbaPasazerow; i++) {
+            if (pasazerowie[i].getWybranyPrzystanek() == nastepnyPrzystanek) {
+                boolean czyWyszedl = pasazerowie[i].wyjdzZTramwaju(this);
+                if (czyWyszedl)
+                    System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Pasażer " +
+                            pasazerowie[i].getNr() + " wysiadł z tramwaju linii " + this.getLinia().getNr() +
+                            " (nr. bocz. " + this.getNrBoczny() + ") na przystanku " +
+                            pasazerowie[i].getWybranyPrzystanek(this).getNazwa() + ".");
+            }
+        }
+    }
+
+    // wpuszcza wszyskich pasazerow z aktualnego przystanku jesli jest miejsce w tramwaju
+    private void wpuscPasazerow(Symulacja symulacja, Godzina godzina) {
+        Przystanek przystanek = getLinia().getItyPrzystanek(nastepnyPrzystanek);
+        for (int i = 0; i < przystanek.getLiczbaOsob(); i++) {
+            Pasazer p = przystanek.getItyOczekujacy(i);
+            boolean czyWszedl = przystanek.getItyOczekujacy(i).wejdzDoTramwaju(this);
+            if (czyWszedl) {
+                przystanek.usunItyOczekujacy(i);
+                System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Pasażer " +
+                        p.getNr() + " wsiadł do tramwaju linii " + getLinia().getNr() +
+                        " (nr bocz. " + getNrBoczny() + ") z zamiarem dojechania do " +
+                        "przystanku " + p.getWybranyPrzystanek(this).getNazwa() + ".");
+            }
+        }
+    }
+
+    // Tramwaj zatrzymuje sie na nastepnym przystanku wypuszcza, a nastepnia wpuszcza pasazerow
+    public void zatrzymajSie(Symulacja symulacja, Godzina godzina) {
+        System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Tramwaj linii " +
+                getLinia().getNr() + " (nr bocz. " + getNrBoczny() + ") zatrzymał się" +
+                " na przystanku " + nastepnyPrzystanek + ".");
+        wypuscPasazerow(symulacja, godzina);
+        wpuscPasazerow(symulacja, godzina);
+    }
+
+    // TODO
+    private ZdarzenieTramwaj odjedzZPrzystanku() {return null;}
 
 }
