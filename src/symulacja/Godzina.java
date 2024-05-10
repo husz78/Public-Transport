@@ -54,4 +54,9 @@ public class Godzina {
         }
         return new Godzina (noweGodziny, noweMinuty);
     }
+
+    // zwraca roznice (w minutach) pomiedzy dwoma godzinami
+    public int roznica(Godzina g) {
+        return Math.abs(60 * (g.godziny - godziny) + g.minuty - minuty);
+    }
 }

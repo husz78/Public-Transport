@@ -65,4 +65,7 @@ public class Przystanek {
     public String getNazwa() {
         return nazwa;
     }
+    public void oproznijPrzystanek() {
+        liczbaOsob = 0;
+    }
 }

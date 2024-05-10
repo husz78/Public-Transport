@@ -25,7 +25,7 @@ public class Main {
             System.out.println(z.getCzas());
         }
         for (Pasazer p : pasazerowie) {
-            p.idzNaPrzystanek();
+            p.idzNaPrzystanek(symulacja);
         }
         for (Przystanek p : przystanki) {
             System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");

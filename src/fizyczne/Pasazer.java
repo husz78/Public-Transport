@@ -3,6 +3,7 @@ package fizyczne;
 import pojazdy.Tramwaj;
 import symulacja.Godzina;
 import symulacja.Losowanie;
+import symulacja.Symulacja;
 import zdarzenia.ZdarzeniePasazer;
 
 public class Pasazer {
@@ -11,8 +12,12 @@ public class Pasazer {
     private int wybranyPrzystanek; // indeks wybranego przystanku w danej linii tramwajowej,
     // ktory pasazer wybiera podczas podrozy tramwajem
     private Godzina godzinaWyjscia; // godzina wyjscia na przystanek danego dnia
+    private Godzina godzinaOstatnieogoCzekania; // godzina ostatniego przyjscia lub wyjscia na przystanek
+    // danego pasazera
+    private int czasCzekania; // czas oczekiwania danego dnia na przystanku
 
     public Pasazer(int nr) {
+        this.czasCzekania = 0;
         this.nr = nr;
     }
     public int getNr() {
@@ -34,6 +39,18 @@ public class Pasazer {
     public int getWybranyPrzystanek() {
         return wybranyPrzystanek;
     }
+    public void dodajCzasCzekania(int czas) {
+        czasCzekania += czas;
+    }
+    public int getCzasCzekania() {
+        return czasCzekania;
+    }
+    public Godzina getGodzinaOstatnieogoCzekania() {
+        return godzinaOstatnieogoCzekania;
+    }
+    public void setGodzinaOstatnieogoCzekania(Godzina g) {
+        godzinaOstatnieogoCzekania = g;
+    }
     @Override
     public String toString() {
         return "Pasazer o numerze: " + nr +
@@ -44,17 +61,19 @@ public class Pasazer {
     // zwraca zdarzenie reprezentujace wyjscie pasazera na przystanek o losowej godzinie
     public ZdarzeniePasazer zaplanujWyjscie() {
         godzinaWyjscia = Losowanie.losujGodzine();
+        godzinaOstatnieogoCzekania = godzinaWyjscia;
         ZdarzeniePasazer zdarzenie = new ZdarzeniePasazer(godzinaWyjscia, this);
         return zdarzenie;
     }
 
     // Pasazer idzie na przystanek i jesli jest miejsce to czeka na tramwaj
-    // a jesli nie ma to wraca do domu
-    public void idzNaPrzystanek() {
+    // a jesli nie ma to wraca do domu.
+    public void idzNaPrzystanek(Symulacja symulacja) {
         // jesli jest jeszcze miejsce na przystanku
         if (najblizszyPrzystanek.getLiczbaOsob() < Przystanek.getPojemnosc()) {
             najblizszyPrzystanek.addOczekujacy(this);
             najblizszyPrzystanek.incLiczbaOsob();
+            symulacja.incLiczbaCzekanNaPrzystanku();
         }
     }
 

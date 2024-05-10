@@ -12,6 +12,8 @@ public class Symulacja {
     // pasazerow ze wszystkich dni symulacji
     private int czasCzekaniaRazem; // laczny czas oczekiwania na przystankach
     // przez pasazerow ze wszystkich dni symulacji
+    private int liczbaCzekanNaPrzystanku; // laczna liczba oczekiwan na przystanku przez
+    // pasazerow danej symulacji
     private final int liczbaDni; // liczba dni calej symulacji
     private int nrDnia; // numer dnia danej symulacji
     private int liczbaPrzejazdow; // liczba przejazdow pasazerow z
@@ -39,8 +41,7 @@ public class Symulacja {
     public String toString() {
         return "Aktualny dzień symulacji: " + nrDnia + "/" + liczbaDni +
                 " Czas oczekiwania tego dnia: " + czasCzekania + " Liczba Przejazdow: " +
-                liczbaPrzejazdow + " Czas oczekiwania lacznie: " + czasCzekaniaRazem +
-                " Liczba przejazdow lacznie: " + liczbaPrzejazdowRazem;
+                liczbaPrzejazdow + " Liczba przejazdow lacznie: " + liczbaPrzejazdowRazem;
     }
     public void wczytajWartosci() {
         Scanner skaner = new Scanner(System.in);
@@ -188,11 +189,22 @@ public class Symulacja {
     }
     public void nastepneZdarzenie() {}
     public void nastepnyDzien() {
+        if (nrDnia == liczbaDni)return;
+        nrDnia++;
         wylosujGodzinyWyjscia();
         ustawTramwaje();
         ustalGodzinyWyjazdu();
+        System.out.println("Łączna liczba przejazdów dnia nr: " + nrDnia + " wynosi " + liczbaPrzejazdow);
+
+        for (Pasazer p : pasazerowie) czasCzekania += p.getCzasCzekania();
+        System.out.println("Łączny czas czekania na przystankach dnia " + nrDnia + " wynosi " + czasCzekania);
+        czasCzekaniaRazem += czasCzekania;
         liczbaPrzejazdow = 0;
         czasCzekania = 0;
+
+        // na koniec dnia pasazerowie wracaja do domu
+        for (Przystanek p : przystanki) p.oproznijPrzystanek();
+        for (Tramwaj t : tramwaje) t.oproznijTramwaj();
     }
 
 
@@ -218,6 +230,9 @@ public class Symulacja {
     public void incLiczbaPrzejazdow() {
         liczbaPrzejazdow++;
         liczbaPrzejazdowRazem++;
+    }
+    public void incLiczbaCzekanNaPrzystanku() {
+        liczbaCzekanNaPrzystanku++;
     }
     public int liczbaPasazerow() {
         return pasazerowie.length;

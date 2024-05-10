@@ -89,11 +89,15 @@ public class Tramwaj extends Pojazd {
         for (int i = 0; i < liczbaPasazerow; i++) {
             if (pasazerowie[i].getWybranyPrzystanek() == nastepnyPrzystanek) {
                 boolean czyWyszedl = pasazerowie[i].wyjdzZTramwaju(this);
-                if (czyWyszedl)
+                if (czyWyszedl) {
                     System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Pasażer " +
                             pasazerowie[i].getNr() + " wysiadł z tramwaju linii " + this.getLinia().getNr() +
                             " (nr. bocz. " + this.getNrBoczny() + ") na przystanku " +
                             pasazerowie[i].getWybranyPrzystanek(this).getNazwa() + ".");
+                    pasazerowie[i].setGodzinaOstatnieogoCzekania(godzina);
+                    symulacja.incLiczbaCzekanNaPrzystanku();
+                }
+
             }
         }
     }
@@ -106,6 +110,7 @@ public class Tramwaj extends Pojazd {
             boolean czyWszedl = przystanek.getItyOczekujacy(i).wejdzDoTramwaju(this);
             if (czyWszedl) {
                 symulacja.incLiczbaPrzejazdow();
+                p.dodajCzasCzekania(p.getGodzinaOstatnieogoCzekania().roznica(godzina));
                 przystanek.usunItyOczekujacy(i);
                 System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Pasażer " +
                         p.getNr() + " wsiadł do tramwaju linii " + getLinia().getNr() +
@@ -158,5 +163,10 @@ public class Tramwaj extends Pojazd {
         }
         ZdarzenieTramwaj zdarzenie = new ZdarzenieTramwaj(godzina, this);
         return zdarzenie;
+    }
+
+    // oprozniamy tramwaj z pasazerow
+    public void oproznijTramwaj() {
+        liczbaPasazerow = 0;
     }
 }
