@@ -114,16 +114,49 @@ public class Tramwaj extends Pojazd{
         }
     }
 
+    // zwraca true jesli tramwaj jest na petli i false jesli nie jest
+    private boolean czyNaPetli() {
+        if (((nastepnyPrzystanek == getLinia().liczbaPrzystankow()-1) && poprzedniPrzystanek == nastepnyPrzystanek-1)
+                || (nastepnyPrzystanek == 0 && poprzedniPrzystanek == 1)) return true;
+        return false;
+    }
+
     // Tramwaj zatrzymuje sie na nastepnym przystanku wypuszcza, a nastepnia wpuszcza pasazerow
+    // chyba ze jest na petli, wtedy nie wpuszcza pasazerow juz
     public void zatrzymajSie(Symulacja symulacja, Godzina godzina) {
         System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Tramwaj linii " +
                 getLinia().getNr() + " (nr bocz. " + getNrBoczny() + ") zatrzymał się" +
                 " na przystanku " + nastepnyPrzystanek + ".");
         wypuscPasazerow(symulacja, godzina);
-        wpuscPasazerow(symulacja, godzina);
+        if (!czyNaPetli()) wpuscPasazerow(symulacja, godzina);
     }
 
-    // TODO
-    private ZdarzenieTramwaj odjedzZPrzystanku() {return null;}
+    // zwraca zdarzenie tramwaju odpowiadajace zatrzymaniu sie tramwaju na kolejnym przystanku
+    public ZdarzenieTramwaj odjedzZPrzystanku(Godzina godzina) {
+        // jesli jestesmy na petli w prawa strone
+        if ((nastepnyPrzystanek == getLinia().liczbaPrzystankow()-1 && poprzedniPrzystanek == nastepnyPrzystanek-1)) {
+            poprzedniPrzystanek = getLinia().liczbaPrzystankow();
+            godzina = godzina.dodajMinuty(getLinia().getCzasPetla());
+        }
+        // jesli jestesmy na petli w lewa strone
+        else if (nastepnyPrzystanek == 0 && poprzedniPrzystanek == 1) {
+            poprzedniPrzystanek = -1;
+            godzina = godzina.dodajMinuty(getLinia().getCzasPetla());
+        }
+        // jesli jedziemy w prawa strone
+        else if (nastepnyPrzystanek > poprzedniPrzystanek) {
+            godzina = godzina.dodajMinuty(getLinia().getCzasPrzejazdu(nastepnyPrzystanek));
+            nastepnyPrzystanek++;
+            poprzedniPrzystanek++;
+        }
+        // jesli jedziemy w lewa strone
+        else {
+            godzina = godzina.dodajMinuty(getLinia().getCzasPrzejazdu(nastepnyPrzystanek - 1));
+            nastepnyPrzystanek--;
+            poprzedniPrzystanek--;
+        }
+        ZdarzenieTramwaj zdarzenie = new ZdarzenieTramwaj(godzina, this);
+        return zdarzenie;
+    }
 
 }

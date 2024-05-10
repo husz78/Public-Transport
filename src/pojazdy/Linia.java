@@ -55,6 +55,16 @@ public class Linia {
         return liczbaPojazdow;
     }
 
+    // zwraca czas przejazdu pomiedzy i-tym i+1-szym przystankiem
+    public int getCzasPrzejazdu(int i) {
+        return czasMiedzyPrzystankami[i];
+    }
+
+    // zwraca czas postoju na petli
+    public int getCzasPetla() {
+        return czasMiedzyPrzystankami[liczbaPrzystankow() - 1];
+    }
+
     // zwraca nam laczny czas przejazdu pelnego kolka na trasie linii
     public int czasPrzejazdu() {
         int czas = 0;
