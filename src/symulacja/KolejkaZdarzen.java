@@ -16,6 +16,7 @@ public class KolejkaZdarzen implements Kolejka {
         kolejka = new Zdarzenie[1];
     }
 
+    @Override
     // wstawia zdarzenie do kolejki zachowujac jej strukture
     public void wstaw(Zdarzenie zdarzenie) {
         sprawdzPojemnosc();
@@ -23,23 +24,25 @@ public class KolejkaZdarzen implements Kolejka {
         kopcuj(rozmiar);
         rozmiar++;
     }
-
+    @Override
     // zwraca zdarzenie o najwczesniejszej godzinie lub null jesli kolejka jest pusta
     // i usuwa je z kolejki
     public Zdarzenie pobierz() {
-        if (czyPusta()) return null;
+        assert !czyPusta(): "Kolejka jest pusta. Nie można nic z niej pobrać.";
         Zdarzenie wynik = kolejka[1];
         zamien(1, rozmiar - 1);
         rozmiar--;
         kopcujWDol(1);
         return wynik;
     }
-    public Zdarzenie[] getKolejka() {
-        return kolejka;
-    }
+    @Override
     // true jesli kolejka jest pusta, false w przeciwnym przypadku
     public boolean czyPusta() {
         return rozmiar <= 1;
+    }
+
+    public Zdarzenie[] getKolejka() {
+        return kolejka;
     }
 
     // zamienia miejscami dwa zdarzenia w kolejce o indeksach i oraz j

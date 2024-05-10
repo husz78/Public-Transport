@@ -6,7 +6,7 @@ import symulacja.Godzina;
 import symulacja.Symulacja;
 import zdarzenia.ZdarzenieTramwaj;
 
-public class Tramwaj extends Pojazd{
+public class Tramwaj extends Pojazd {
     // TODO: odkomentowac
     private Godzina godzinaStartu; // czas, kiedy tramwaj rozpoczyna swoj bieg
     private static int pojemnosc; // pojemnosc tramwaju (dla kazdego taka sama)
@@ -158,5 +158,4 @@ public class Tramwaj extends Pojazd{
         ZdarzenieTramwaj zdarzenie = new ZdarzenieTramwaj(godzina, this);
         return zdarzenie;
     }
-
 }
