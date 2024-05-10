@@ -51,6 +51,9 @@ public class Pasazer {
     public void setGodzinaOstatnieogoCzekania(Godzina g) {
         godzinaOstatnieogoCzekania = g;
     }
+    public void resetujCzasCzekania() {
+        czasCzekania = 0;
+    }
     @Override
     public String toString() {
         return "Pasazer o numerze: " + nr +

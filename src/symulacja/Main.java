@@ -14,28 +14,40 @@ public class Main {
         int liczbaDni = skaner.nextInt();
         Symulacja symulacja = new Symulacja(liczbaDni);
         symulacja.wczytajWartosci();
-//        System.out.println(symulacja);
-        Pasazer[] pasazerowie = symulacja.getPasazerowie();
-        Tramwaj[] tramwaje = symulacja.getTramwaje();
-        Przystanek[] przystanki = symulacja.getPrzystanki();
         symulacja.pierwszyDzien();
-        KolejkaZdarzen kolejka = symulacja.getKolejka();
-        while (!kolejka.czyPusta()) {
-            Zdarzenie z = kolejka.pobierz();
-            System.out.println(z.getCzas());
+        while (liczbaDni > symulacja.getNrDnia()) {
+            System.out.println("KOLEJNY DZIEN");
+            symulacja.nastepnyDzien();
         }
-        for (Pasazer p : pasazerowie) {
-            p.idzNaPrzystanek(symulacja);
-        }
-        for (Przystanek p : przystanki) {
-            System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
-        }
-        for (Tramwaj t : tramwaje) {
-            t.zatrzymajSie(symulacja, new Godzina(7, 8));
-        }
-        for (Przystanek p : przystanki) {
-            System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
-        }
+        System.out.println("Łączna liczba przejazdów pasażerów całej symulacji wynosi " +
+                symulacja.getLiczbaPrzejazdowRazem() + ".");
+        if (symulacja.getLiczbaCzekanNaPrzystanku() == 0)
+            System.out.println("Średni czas czekania na przystanku dla całej symulacji wynosi 0 minut.");
+        else
+            System.out.println("Średni czas czekania na przystanku dla całej symulacji wynosi "
+                    + symulacja.getCzasCzekaniaRazem()/symulacja.getLiczbaCzekanNaPrzystanku() + " minut.");
+//        System.out.println(symulacja);
+//        Pasazer[] pasazerowie = symulacja.getPasazerowie();
+//        Tramwaj[] tramwaje = symulacja.getTramwaje();
+//        Przystanek[] przystanki = symulacja.getPrzystanki();
+//        symulacja.pierwszyDzien();
+//        KolejkaZdarzen kolejka = symulacja.getKolejka();
+//        while (!kolejka.czyPusta()) {
+//            Zdarzenie z = kolejka.pobierz();
+//            System.out.println(z.getCzas());
+//        }
+//        for (Pasazer p : pasazerowie) {
+//            p.idzNaPrzystanek(symulacja);
+//        }
+//        for (Przystanek p : przystanki) {
+//            System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
+//        }
+//        for (Tramwaj t : tramwaje) {
+//            t.zatrzymajSie(symulacja, new Godzina(7, 8));
+//        }
+//        for (Przystanek p : przystanki) {
+//            System.out.println("Na przystanku " + p.getNazwa() + " jest " + p.getLiczbaOsob() + " pasazerow.");
+//        }
 
 //        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
 //        opcjaPasazer opcja = opcjaPasazer.idz;

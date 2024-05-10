@@ -18,6 +18,7 @@ public class Tramwaj extends Pojazd {
     private int nastepnyPrzystanek; // indeks nastepnego przystanku,
     // na ktory przyjedzie tramwaj w tablicy przystankow danej linii lub aktualny przystanek
     // na ktorym tramwaj sie teraz znajduje
+    private int poczatkowyPrzystanek; // przystanek, na ktorym tramwaj zaczyna swoj bieg
 
     public Tramwaj(int nrBoczny, Linia linia) {
         super(nrBoczny, linia);
@@ -50,6 +51,8 @@ public class Tramwaj extends Pojazd {
     public int getLiczbaPasazerow() {
         return liczbaPasazerow;
     }
+    public int getPoczatkowyPrzystanek() { return poczatkowyPrzystanek; }
+    public void setPoczatkowyPrzystanek(int i) { poczatkowyPrzystanek = i; }
     public void incLiczbaPasazerow() {
         liczbaPasazerow++;
     }
@@ -132,7 +135,7 @@ public class Tramwaj extends Pojazd {
     public void zatrzymajSie(Symulacja symulacja, Godzina godzina) {
         System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Tramwaj linii " +
                 getLinia().getNr() + " (nr bocz. " + getNrBoczny() + ") zatrzymał się" +
-                " na przystanku " + nastepnyPrzystanek + ".");
+                " na przystanku " + getLinia().getItyPrzystanek(nastepnyPrzystanek) + ".");
         wypuscPasazerow(symulacja, godzina);
         if (!czyNaPetli()) wpuscPasazerow(symulacja, godzina);
     }
