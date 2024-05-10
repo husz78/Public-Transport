@@ -55,6 +55,8 @@ public class Tramwaj extends Pojazd{
     public void decLiczbaPasazerow() {
         liczbaPasazerow--;
     }
+    public void setGodzinaStartu(Godzina godzina) { godzinaStartu = godzina; }
+    public Godzina getGodzinaStartu() { return godzinaStartu; }
 
     // zamienia miejscami pasazera i oraz pasazera j w tablicy pasazerow tramwaju
     public void zamien(int i, int j) {

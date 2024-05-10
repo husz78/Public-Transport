@@ -39,4 +39,19 @@ public class Godzina {
             else return false;
         }
     }
+
+    // zwraca godzine this + x minut
+    public Godzina dodajMinuty(int x) {
+        int noweMinuty;
+        int noweGodziny;
+        if (minuty + x < 60) {
+            noweMinuty = x + minuty;
+            noweGodziny = godziny;
+        }
+        else {
+            noweGodziny = godziny + 1;
+            noweMinuty = minuty + x - 60;
+        }
+        return new Godzina (noweGodziny, noweMinuty);
+    }
 }

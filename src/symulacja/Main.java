@@ -56,6 +56,9 @@ public class Main {
         for (Tramwaj t : tramwaje) {
             System.out.println(t.getPoprzedniPrzystanek());
         }
+        for (Tramwaj t : tramwaje) {
+            System.out.println(t.getGodzinaStartu());
+        }
 
 //        for (Pasazer p : pasazerowie) System.out.println(p.getGodzinaWyjscia());
 //        opcjaPasazer opcja = opcjaPasazer.idz;

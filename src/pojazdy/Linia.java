@@ -11,13 +11,14 @@ public class Linia {
     private Przystanek[] przystanki; // przystanki w kolejnosci,
     // ktore naleza do danej trasy linii
     private int nr; // numer linii
-
+    private Pojazd[] pojazdy; // tablica pojazdow nalezacych do danej linii
     public Linia(int nr, int liczbaPojazdow, int dlugoscTrasy) {
         this.nr = nr;
         this.liczbaPojazdow = liczbaPojazdow;
         this.dlugoscTrasy = dlugoscTrasy;
         this.czasMiedzyPrzystankami = new int[dlugoscTrasy];
         this.przystanki = new Przystanek[dlugoscTrasy];
+        this.pojazdy = new Pojazd[liczbaPojazdow];
     }
     @Override
     public String toString() {
@@ -46,7 +47,19 @@ public class Linia {
         return nr;
     }
 
+    // ustawia i-ty pojazd linii na pojazd
+    public void wstawPojazd(Pojazd pojazd, int i) {
+        pojazdy[i] = pojazd;
+    }
     public int getLiczbaPojazdow() {
         return liczbaPojazdow;
+    }
+
+    // zwraca nam laczny czas przejazdu pelnego kolka na trasie linii
+    public int czasPrzejazdu() {
+        int czas = 0;
+        for (int i : czasMiedzyPrzystankami)
+            czas += i;
+        return 2 * czas;
     }
 }
