@@ -3,7 +3,6 @@ import symulacja.Godzina;
 public abstract class Zdarzenie {
     protected Godzina czas;
     protected Object obiekt;
-
     public Zdarzenie(Godzina godzina) {
         this.czas = godzina;
     }

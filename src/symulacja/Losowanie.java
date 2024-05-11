@@ -15,8 +15,7 @@ public abstract class Losowanie {
     public static Godzina losujGodzine(){
         int godziny = losuj(6, 11);
         int minuty = losuj(0, 59);
-        Godzina godzina = new Godzina(godziny, minuty);
-        return godzina;
+        return new Godzina(godziny, minuty);
     }
 
     // losuje nam przystanek ze wszystkich w danej symulacji

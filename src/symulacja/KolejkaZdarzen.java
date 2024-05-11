@@ -2,11 +2,12 @@ package symulacja;
 
 import zdarzenia.Zdarzenie;
 
+// Implementujemy kolejke zdarzen jako kopiec dynamicznie rozszerzany
 public class KolejkaZdarzen implements Kolejka {
-    // Implementujemy kolejke zdarzen jako kopiec dynamicznie rozszerzany
+
     private Zdarzenie[] kolejka; // tablica zdarzen. Pierwszym elementem tablicy
     // jest zdarzenie o najwczesniejszej godzinie danego dnia
-    // zerowy element tablicy to puste pole
+    // zerowy element tablicy to puste pole, w ktorym nic nie przechowujemy
     private int pojemnosc; // pojemnosc kolejki (ile zdarzen zmiesci)
     private int rozmiar; // aktualna liczba zdarzen w kolejce + 1 (za puste pole)
 

@@ -54,13 +54,12 @@ public class Pasazer {
                 " ma najblizszy przystanek: " + najblizszyPrzystanek +
                 " wychodzi dzis o godzinie: " + godzinaWyjscia;
     }
-    // TODO zaimplementowac ponizsze metody
+
     // zwraca zdarzenie reprezentujace wyjscie pasazera na przystanek o losowej godzinie
     public ZdarzeniePasazer zaplanujWyjscie() {
         godzinaWyjscia = Losowanie.losujGodzine();
         godzinaOstatnieogoCzekania = godzinaWyjscia;
-        ZdarzeniePasazer zdarzenie = new ZdarzeniePasazer(godzinaWyjscia, this);
-        return zdarzenie;
+        return new ZdarzeniePasazer(godzinaWyjscia, this);
     }
 
     // Pasazer idzie na przystanek i jesli jest miejsce to czeka na tramwaj
@@ -83,7 +82,7 @@ public class Pasazer {
         return true;
     }
 
-    // wybiera przystanek, na ktorym wysiadzie, pasazerowi z pozostalych na trasie
+    // wybiera przystanek, na ktorym pasazer wysiadzie, z pozostalych na trasie
     private void wybierzPrzystanek(Tramwaj tramwaj) {
         if (tramwaj.getPoprzedniPrzystanek() <= tramwaj.getNastepnyPrzystanek()) {
             wybranyPrzystanek = Losowanie.losuj(tramwaj.getNastepnyPrzystanek() + 1,
@@ -108,5 +107,4 @@ public class Pasazer {
         }
         else return false;
     }
-
 }

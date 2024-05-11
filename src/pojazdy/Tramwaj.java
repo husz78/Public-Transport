@@ -7,7 +7,6 @@ import symulacja.Symulacja;
 import zdarzenia.ZdarzenieTramwaj;
 
 public class Tramwaj extends Pojazd {
-    // TODO: odkomentowac
     private Godzina godzinaStartu; // czas, kiedy tramwaj rozpoczyna swoj bieg
     private static int pojemnosc; // pojemnosc tramwaju (dla kazdego taka sama)
     private Pasazer[] pasazerowie; // tablica aktualnych pasazerow tramwaju
@@ -81,7 +80,7 @@ public class Tramwaj extends Pojazd {
         else return false;
     }
 
-    // wypuszcza wszystkich pasazerow, ktorzy wybrali dany przystanek jeslii jest na nim miejsce
+    // wypuszcza wszystkich pasazerow, ktorzy wybrali dany przystanek jesli jest na nim miejsce
     private void wypuscPasazerow(Symulacja symulacja, Godzina godzina) {
         for (int i = 0; i < liczbaPasazerow; i++) {
             if (pasazerowie[i].getWybranyPrzystanek() == nastepnyPrzystanek) {
@@ -94,7 +93,6 @@ public class Tramwaj extends Pojazd {
                     pasazerowie[i].setGodzinaOstatnieogoCzekania(godzina);
                     symulacja.incLiczbaCzekanNaPrzystanku();
                 }
-
             }
         }
     }
@@ -158,8 +156,7 @@ public class Tramwaj extends Pojazd {
             nastepnyPrzystanek--;
             poprzedniPrzystanek--;
         }
-        ZdarzenieTramwaj zdarzenie = new ZdarzenieTramwaj(godzina, this);
-        return zdarzenie;
+        return new ZdarzenieTramwaj(godzina, this);
     }
 
     // oprozniamy tramwaj z pasazerow

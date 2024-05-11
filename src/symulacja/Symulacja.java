@@ -76,7 +76,7 @@ public class Symulacja {
         int liczbaLinii = skaner.nextInt();
         if (liczbaLinii != 0) {
             int liczbaTramwajow = 0;
-            // dwuwymiarowa tablica tramwajow (bo nie znamy dokladnej liczby od razu)
+            // dwuwymiarowa tablica tramwajow (bo nie znamy dokladnej liczby tramwajow od razu)
             Tramwaj[][] tramwaje = new Tramwaj[liczbaLinii][];
 
             for (int i = 0; i < liczbaLinii; i++){
@@ -193,7 +193,7 @@ public class Symulacja {
             kolejka.wstaw(new ZdarzenieTramwaj(t.getGodzinaStartu(), t));
     }
 
-    // TODO nie skończony pierwszy dzien
+    // odpowiada tylko za pierwszy dzien symulacji, bo trzeba wylosowac przystanki dla pasazerow
     public void pierwszyDzien() {
         wylosujPrzystanki();
         ustawTramwaje();
@@ -220,6 +220,8 @@ public class Symulacja {
             pasazer.idzNaPrzystanek(this);
         }
     }
+
+    // odpowiada za symulacje jednego dnia calej symulacji
     public void nastepnyDzien() {
         if (nrDnia >= liczbaDni) return;
         wylosujGodzinyWyjscia();

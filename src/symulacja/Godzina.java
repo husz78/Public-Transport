@@ -1,6 +1,5 @@
 package symulacja;
 
-
 public class Godzina {
     private int godziny;
     private int minuty;

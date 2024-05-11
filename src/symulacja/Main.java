@@ -12,9 +12,6 @@ public class Main {
         while (liczbaDni > symulacja.getNrDnia()) {
             symulacja.nastepnyDzien();
         }
-        // TODO niepotrzebne
-        System.out.println("Łączna liczba czekań na przystanku całej symulacji wynosi " +
-                symulacja.getLiczbaCzekanNaPrzystanku());
         System.out.println("Łączna liczba przejazdów pasażerów całej symulacji wynosi " +
                 symulacja.getLiczbaPrzejazdowRazem() + ".");
         if (symulacja.getLiczbaCzekanNaPrzystanku() == 0)
