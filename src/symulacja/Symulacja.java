@@ -231,6 +231,12 @@ public class Symulacja {
         }
         System.out.println("Łączna liczba przejazdów dnia nr: " + nrDnia + " wynosi " + liczbaPrzejazdow);
 
+        for (Przystanek p : przystanki) {
+            for (int i = 0; i < p.getLiczbaOsob(); i++) {
+                p.getItyOczekujacy(i).dodajCzasCzekania(new Godzina(24, 0).roznica(
+                        p.getItyOczekujacy(i).getGodzinaOstatnieogoCzekania()));
+            }
+        }
         for (Pasazer p : pasazerowie) czasCzekania += p.getCzasCzekania();
         System.out.println("Łączny czas czekania na przystankach dnia " + nrDnia + " wynosi " + czasCzekania);
         czasCzekaniaRazem += czasCzekania;

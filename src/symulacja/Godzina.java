@@ -6,7 +6,7 @@ public class Godzina {
     private int godziny;
     private int minuty;
     public Godzina(int godziny, int minuty) {
-        assert godziny >= 0 && godziny < 24: "Niepoprawna godzina.";
+        assert godziny > 0 && godziny <= 24: "Niepoprawna godzina.";
         assert minuty >= 0 && minuty < 60: "Niepoprawna minuta";
         this.godziny = godziny;
         this.minuty = minuty;
