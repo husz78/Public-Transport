@@ -33,9 +33,6 @@ public class Tramwaj extends Pojazd {
     public static void setPojemnosc(int pojemnosc) {
         Tramwaj.pojemnosc = pojemnosc;
     }
-    public static int getPojemnosc() {
-        return Tramwaj.pojemnosc;
-    }
     public void setPoprzedniPrzystanek(int i) {
         poprzedniPrzystanek = i;
     }
@@ -53,9 +50,6 @@ public class Tramwaj extends Pojazd {
     }
     public int getPoczatkowyPrzystanek() { return poczatkowyPrzystanek; }
     public void setPoczatkowyPrzystanek(int i) { poczatkowyPrzystanek = i; }
-    public void incLiczbaPasazerow() {
-        liczbaPasazerow++;
-    }
     public void decLiczbaPasazerow() {
         liczbaPasazerow--;
     }
@@ -135,7 +129,7 @@ public class Tramwaj extends Pojazd {
     public void zatrzymajSie(Symulacja symulacja, Godzina godzina) {
         System.out.println(symulacja.getNrDnia() + ", " + godzina + ": Tramwaj linii " +
                 getLinia().getNr() + " (nr bocz. " + getNrBoczny() + ") zatrzymał się" +
-                " na przystanku " + getLinia().getItyPrzystanek(nastepnyPrzystanek) + ".");
+                " na przystanku " + getLinia().getItyPrzystanek(nastepnyPrzystanek).getNazwa() + ".");
         wypuscPasazerow(symulacja, godzina);
         if (!czyNaPetli()) wpuscPasazerow(symulacja, godzina);
     }

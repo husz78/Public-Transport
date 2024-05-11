@@ -28,10 +28,6 @@ public class Przystanek {
     public void incLiczbaOsob() {
         liczbaOsob++;
     }
-    public void decLiczbaOsob() { liczbaOsob--; }
-    public void resetLiczaOsob() {
-        liczbaOsob = 0;
-    }
     public int getLiczbaOsob() {
         return liczbaOsob;
     }

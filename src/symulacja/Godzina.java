@@ -1,6 +1,5 @@
 package symulacja;
 
-import fizyczne.Pasazer;
 
 public class Godzina {
     private int godziny;

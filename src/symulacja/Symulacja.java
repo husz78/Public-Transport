@@ -208,9 +208,9 @@ public class Symulacja {
         if (zdarzenie instanceof ZdarzenieTramwaj) {
             ZdarzenieTramwaj zdarzenieT = (ZdarzenieTramwaj) zdarzenie;
             Tramwaj tramwaj = (Tramwaj) zdarzenieT.getObiekt();
+            tramwaj.zatrzymajSie(this, godzina);
             if (koniecWyjazdowZZajezdni.mniejszaNiz(zdarzenieT.getCzas()))
                 if (tramwaj.getNastepnyPrzystanek() == tramwaj.getPoczatkowyPrzystanek()) return;
-            tramwaj.zatrzymajSie(this, godzina);
             ZdarzenieTramwaj noweZdarzenie = tramwaj.odjedzZPrzystanku(godzina);
             kolejka.wstaw(noweZdarzenie);
         }
@@ -238,7 +238,8 @@ public class Symulacja {
             }
         }
         for (Pasazer p : pasazerowie) czasCzekania += p.getCzasCzekania();
-        System.out.println("Łączny czas czekania na przystankach dnia " + nrDnia + " wynosi " + czasCzekania);
+        System.out.println("Łączny czas czekania na przystankach dnia " + nrDnia + " wynosi " + czasCzekania + " minut.");
+
         czasCzekaniaRazem += czasCzekania;
         liczbaPrzejazdow = 0;
         czasCzekania = 0;
@@ -258,15 +259,6 @@ public class Symulacja {
         }
         return null;
     }
-    public Tramwaj[] getTramwaje() {
-        return tramwaje;
-    }
-    public Przystanek[] getPrzystanki() {
-        return przystanki;
-    }
-    public Pasazer[] getPasazerowie() {
-        return pasazerowie;
-    }
     public int liczbaPrzystankow() {
         return przystanki.length;
     }
@@ -285,13 +277,6 @@ public class Symulacja {
     }
     public int getLiczbaCzekanNaPrzystanku() {
         return liczbaCzekanNaPrzystanku;
-    }
-    public int liczbaPasazerow() {
-        return pasazerowie.length;
-    }
-    // TODO Moze do usuniecia ten getter
-    public KolejkaZdarzen getKolejka() {
-        return kolejka;
     }
     public int getNrDnia() {
         return nrDnia;

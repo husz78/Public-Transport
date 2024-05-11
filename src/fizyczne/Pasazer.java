@@ -23,14 +23,8 @@ public class Pasazer {
     public int getNr() {
         return nr;
     }
-    public Przystanek getNajblizszyPrzystanek() {
-        return najblizszyPrzystanek;
-    }
     public void setNajblizszyPrzystanek(Przystanek p) {
         najblizszyPrzystanek = p;
-    }
-    public Godzina getGodzinaWyjscia() {
-        return godzinaWyjscia;
     }
     public Przystanek getWybranyPrzystanek(Tramwaj tramwaj) {
         Przystanek przystanek = tramwaj.getLinia().getItyPrzystanek(wybranyPrzystanek);
