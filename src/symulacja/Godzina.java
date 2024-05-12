@@ -38,6 +38,16 @@ public class Godzina {
         }
     }
 
+    // zwraca true jesli this jest wczesniej niz lub rowna a
+    public boolean mniejszaRowna(Godzina a) {
+        if (godziny < a.getGodziny()) return true;
+        else if (godziny > a.getGodziny()) return false;
+        else {
+            if (minuty <= a.getMinuty()) return true;
+            else return false;
+        }
+    }
+
     // zwraca godzine this + x minut
     public Godzina dodajMinuty(int x) {
         int noweMinuty;

@@ -42,9 +42,6 @@ public class KolejkaZdarzen implements Kolejka {
         return rozmiar <= 1;
     }
 
-    public Zdarzenie[] getKolejka() {
-        return kolejka;
-    }
 
     // zamienia miejscami dwa zdarzenia w kolejce o indeksach i oraz j
     private void zamien(int i, int j) {
@@ -67,7 +64,7 @@ public class KolejkaZdarzen implements Kolejka {
     private void kopcujWDol(int i) {
         if (leweDziecko(i) >= rozmiar)return; // doszlismy na sam dol kopca
         if (leweDziecko(i) == rozmiar - 1) { // mamy tylko jedno dziecko
-            if (kolejka[leweDziecko(i)].getCzas().mniejszaNiz(kolejka[i].getCzas())) {
+            if (kolejka[leweDziecko(i)].getCzas().mniejszaRowna(kolejka[i].getCzas())) {
                 zamien(i, leweDziecko(i));
             }
             return;
@@ -75,13 +72,13 @@ public class KolejkaZdarzen implements Kolejka {
 
         // zamieniamy rodzica z mniejszym z dzieci zeby zachowac strukture kopca
         if (kolejka[leweDziecko(i)].getCzas().mniejszaNiz(kolejka[praweDziecko(i)].getCzas())) {
-            if (kolejka[leweDziecko(i)].getCzas().mniejszaNiz(kolejka[i].getCzas())) {
+            if (kolejka[leweDziecko(i)].getCzas().mniejszaRowna(kolejka[i].getCzas())) {
                 zamien(i, leweDziecko(i));
                 kopcujWDol(leweDziecko(i));
             }
         }
         else {
-            if (kolejka[praweDziecko(i)].getCzas().mniejszaNiz(kolejka[i].getCzas())){
+            if (kolejka[praweDziecko(i)].getCzas().mniejszaRowna(kolejka[i].getCzas())){
                 zamien(i, praweDziecko(i));
                 kopcujWDol(praweDziecko(i));
             }
